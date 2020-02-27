@@ -36,6 +36,7 @@ function mainMenu(person, people){
   switch(displayOption){
     case "info":
       // TODO: get person's info
+      displayPerson(person);
       break;
     case "family":
       // TODO: get person's family
@@ -65,7 +66,8 @@ function searchByName(people){
   //displayPerson(filteredPeople[0]);
   mainMenu(filteredPeople[0], people);
   // TODO: What to do with filteredPeople?
-
+  mainMenu(filteredPeople[0],people)
+  
 }
 
 // alerts a list of people
