@@ -9,7 +9,7 @@ function app(people){
   switch(searchType){
     case 'yes':
       // TODO: search by name
-
+      searchByName(people);
       break;
     case 'no':
       // TODO: search by traits
@@ -36,6 +36,7 @@ function mainMenu(person, people){
   switch(displayOption){
     case "info":
       // TODO: get person's info
+      displayPerson(person);
       break;
     case "family":
       // TODO: get person's family
@@ -64,7 +65,8 @@ function searchByName(people){
   });
 
   // TODO: What to do with filteredPeople?
-
+  mainMenu(filteredPeople[0],people)
+  
 }
 
 // alerts a list of people
