@@ -13,7 +13,7 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits
-
+      searchByTrait(people);
       break;
     default:
       alert("Invalid input. Please try again!");
@@ -67,6 +67,71 @@ function searchByName(people){
     }
   });
   mainMenu(filteredPeople[0], people);
+}
+//const traits = ["gender", "dob", "height", "weight", "eyeColor", "occupation"];
+
+function getSearchTraits(){
+  var parameters = [];
+  var searching = true;
+  while (searching) {
+    var traits = promptFor("Select Search Criteria: (Enter number and choose when finished)"
+                            + "\n1. Gender\n2. Date of Birth\n3. Height\n4. Weight"
+                            + "\n5. Eye Color\n6. Occupation\n7. Finished");
+    if (traits == "7" || traits.toLowerCase() == "finished") {
+      searching = false;
+      continue;
+    } else {
+      parameters = enterSearchTraits(parameters, traits); //create seach function
+    }
+  }
+  return parameters;
+}
+
+function enterSearchTraits(search, input){
+  switch (input) {
+    case "1":
+      search.push("gender");
+      break;
+    case "2":
+      search.push("dob");
+      break;
+    case "3":
+      search.push("height");
+      break;
+    case "4":
+      search.push("weight");
+      break;
+    case "5":
+      search.push("eyeColor");
+      break;
+    case "6":
+      search.push("occupation")
+    default:
+      getPush;
+      break;
+  }
+  return search;
+}
+
+function searchByTrait(people){
+  var trait = promptFor("What trait would you like to search for?", chars);
+//map traits
+  switch(trait) {
+    case "gender":
+      break;
+    case "dob":
+      break;
+    case "height":
+      break;
+    case "weight":
+      break;
+    case "eyecolor":
+      break;
+    case "occupation":
+      break;
+    default:
+      return searchByTrait(people);
+  }
 }
 
 // alerts a list of people
