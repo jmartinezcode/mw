@@ -13,6 +13,7 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits
+
       break;
     default:
       alert("Invalid input. Please try again!");
@@ -40,9 +41,11 @@ function mainMenu(person, people){
       break;
     case "family":
       // TODO: get person's family
+      
       break;
     case "descendants":
       // TODO: get person's descendants
+      displayDescendants(person, people);
       break;
     case "restart":
       app(people); // restart
@@ -85,6 +88,30 @@ function displayPerson(person){
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   personInfo += "Occupation: " + person.occupation + "\n";
   alert(personInfo);
+}
+function displayDescendants(person, people){
+  
+  var members= person;
+  members.push(people.filter(function(el){
+    for (let i = 0; i < members.length; i++) {
+      if (el.parents == members[i].id) {
+        return el.
+      }
+      
+    }
+    return el.parents[0] == person.map();
+
+  }));
+  if (members.length == person.length) {
+     displayPeople(members)
+  }
+  else{
+    displayDescendants(members, people);
+  }
+  
+  
+  
+  
 }
 
 // function that prompts and validates user input
