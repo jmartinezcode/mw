@@ -63,11 +63,7 @@ function searchByName(people){
       return el;
     }
   });
-  //displayPerson(filteredPeople[0]);
   mainMenu(filteredPeople[0], people);
-  // TODO: What to do with filteredPeople?
-  mainMenu(filteredPeople[0],people)
-  
 }
 
 // alerts a list of people
