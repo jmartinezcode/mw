@@ -9,7 +9,7 @@ function app(people){
   switch(searchType){
     case 'yes':
       // TODO: search by name
-
+      searchByName(people);
       break;
     case 'no':
       // TODO: search by traits
@@ -62,7 +62,8 @@ function searchByName(people){
       return el;
     }
   });
-
+  //displayPerson(filteredPeople[0]);
+  mainMenu(filteredPeople[0], people);
   // TODO: What to do with filteredPeople?
 
 }
@@ -84,7 +85,7 @@ function displayPerson(person){
   personInfo += "Height: " + person.height + "\n";
   personInfo += "Weight: " + person.weight + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
-  personInfo += "Occupation: " + person.occupation + "\n";  
+  personInfo += "Occupation: " + person.occupation + "\n";
   alert(personInfo);
 }
 
