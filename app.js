@@ -107,7 +107,7 @@ function enterSearchTraits(search, input){
     case "6":
       search.push("occupation")
     default:
-      getPush;
+      getSearchTraits();
       break;
   }
   return search;
@@ -156,21 +156,29 @@ function displayPerson(person){
 }
 function displayDescendants(person, people){
   
-  var members= person;
-  members.push(people.filter(function(el){
-    for (let i = 0; i < members.length; i++) {
-      if (el.parents == members[i].id) {
-        return el.
-      }
-      
-    }
-    return el.parents[0] == person.map();
+  var members= [];
+  members.push(person);
 
-  }));
-  if (members.length == person.length) {
-     displayPeople(members)
+  var newMember = [];
+    newMember = people.filter(function(el){
+    for (let i = 0; i < members.length; i++) {
+        if (el.parents[0] == members[i].id){
+          return el.parents[0] == members[i].id;
+      }
+      else if(el.parents[1] == members[i].id){
+          return el.parents[1] == members[i].id;
+      }
+    }
+return false;
+  });
+  
+  if (newMember.length == 0) {
+     displayPeople(members);
   }
   else{
+    newMember.forEach(element => {
+      members.push(element);
+    });
     displayDescendants(members, people);
   }
   
