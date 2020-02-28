@@ -63,7 +63,6 @@ function searchByName(people){
   });
   mainMenu(filteredPeople[0], people);
 }
-//const traits = ["gender", "dob", "height", "weight", "eyeColor", "occupation"];
 
 function getSearchTraits(){
   var parameters = [];
@@ -106,16 +105,10 @@ function enterSearchTraits(search, input){
   }
   return search;
 }
-function pairTraits(value){
-  return value.map(x)
-}
 
 function searchByTrait(people){
   var traits = getSearchTraits();
   var values = traits.map(x => promptFor("What is the person's " + x, chars));
-  // let pairs = new Map;
-  // pairs.set("traits", traits).set("values", values);
-  
   for (var i = 0; i < traits.length; i++) {
     people = people.filter(x => x[traits[i]] === values[i]);
   }
@@ -153,6 +146,7 @@ function displayFamily(person, people){
   displayByFamilyType("Parents", parents);
   displayByFamilyType("Siblings", siblings);
 }
+
 function getChildren(person,people){
   var children = people.filter(function(el){
     return el.parents[0] == person.id || el.parents[1] == person.id;
@@ -160,6 +154,7 @@ function getChildren(person,people){
   });
   return children;
 }
+
 function getSpouse(person, people){
 var spouse = people.filter(function(el){
   return el.currentSpouse == person.id;
@@ -167,6 +162,7 @@ var spouse = people.filter(function(el){
 });
 return spouse;
 }
+
 function getParents(person, people){
   var parents = people.filter(function(el){
     return el.id == person.parents[0] || el.id == person.parents[1];
@@ -191,12 +187,10 @@ function displayDescendants(person, people, descendants = []){
     }});
     for (let i = 0; i < children.length; i++) {
       displayDescendants(children[i], people, members);
-
     }
     return members;
-
-
 }
+
 function displayByFamilyType(string, members){
   alert(string + "\n" + members.map(function(person){
     return person.firstName + " " + person.lastName;
