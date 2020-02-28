@@ -100,7 +100,11 @@ function enterSearchTraits(search, input){
     case "6":
       search.push("occupation")
     default:
+<<<<<<< HEAD
       app(people);
+=======
+      getSearchTraits();
+>>>>>>> 66f2c63fff71a4515f120a665336d936ec3a4f9b
       break;
   }
   return search;
@@ -133,6 +137,7 @@ function displayPerson(person){
   personInfo += "Occupation: " + person.occupation + "\n";
   alert(personInfo);
 }
+<<<<<<< HEAD
 // function displayDescendants(person, people){
 //
 //   var members= person;
@@ -157,6 +162,40 @@ function displayPerson(person){
 //
 //
 // }
+=======
+function displayDescendants(person, people){
+  
+  var members= [];
+  members.push(person);
+
+  var newMember = [];
+    newMember = people.filter(function(el){
+    for (let i = 0; i < members.length; i++) {
+        if (el.parents[0] == members[i].id){
+          return el.parents[0] == members[i].id;
+      }
+      else if(el.parents[1] == members[i].id){
+          return el.parents[1] == members[i].id;
+      }
+    }
+return false;
+  });
+  
+  if (newMember.length == 0) {
+     displayPeople(members);
+  }
+  else{
+    newMember.forEach(element => {
+      members.push(element);
+    });
+    displayDescendants(members, people);
+  }
+  
+  
+  
+  
+}
+>>>>>>> 66f2c63fff71a4515f120a665336d936ec3a4f9b
 
 // function that prompts and validates user input
 function promptFor(question, callback){
