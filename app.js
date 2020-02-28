@@ -98,7 +98,8 @@ function enterSearchTraits(search, input){
       search.push("eyeColor");
       break;
     case "6":
-      search.push("occupation")
+      search.push("occupation");
+      break;
     default:
       app(people);
       break;
@@ -161,7 +162,7 @@ function getChildren(person,people){
 function getSpouse(person, people){
 var spouse = people.filter(function(el){
   return el.currentSpouse == person.id;
-  
+
 });
 return spouse;
 }
@@ -217,4 +218,3 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
-
