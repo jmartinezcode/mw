@@ -13,7 +13,7 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits
-      searchByTrait(people);
+      displayPeople(searchByTrait(people));
       break;
     default:
       alert("Invalid input. Please try again!");
@@ -100,21 +100,24 @@ function enterSearchTraits(search, input){
     case "6":
       search.push("occupation")
     default:
-<<<<<<< HEAD
       app(people);
-=======
-      getSearchTraits();
->>>>>>> 66f2c63fff71a4515f120a665336d936ec3a4f9b
       break;
   }
   return search;
+}
+function pairTraits(value){
+  return value.map(x)
 }
 
 function searchByTrait(people){
   var traits = getSearchTraits();
   var values = traits.map(x => promptFor("What is the person's " + x, chars));
-
-  return people.filter(x => people[traits[x]] == people[traits[values]]);
+  // let pairs = new Map;
+  // pairs.set("traits", traits).set("values", values);
+  for (var i = 0; i < traits.length; i++) {
+    var filters = people.filter(x => x[traits[i]] == values[i]);
+  }
+  return filters; //seeing if pairs needed, first
 }
 
 // alerts a list of people
@@ -137,34 +140,9 @@ function displayPerson(person){
   personInfo += "Occupation: " + person.occupation + "\n";
   alert(personInfo);
 }
-<<<<<<< HEAD
-// function displayDescendants(person, people){
-//
-//   var members= person;
-//   members.push(people.filter(function(el){
-//     for (let i = 0; i < members.length; i++) {
-//       if (el.parents == members[i].id) {
-//         return el.
-//       };
-//
-//     }
-//     return el.parents[0] == person.map();
-//
-//   }));
-//   if (members.length == person.length) {
-//      displayPeople(members)
-//   }
-//   else{
-//     displayDescendants(members, people);
-//   }
-//
-//
-//
-//
-// }
-=======
+
 function displayDescendants(person, people){
-  
+
   var members= [];
   members.push(person);
 
@@ -180,7 +158,7 @@ function displayDescendants(person, people){
     }
 return false;
   });
-  
+
   if (newMember.length == 0) {
      displayPeople(members);
   }
@@ -190,12 +168,12 @@ return false;
     });
     displayDescendants(members, people);
   }
-  
-  
-  
-  
+
+
+
+
 }
->>>>>>> 66f2c63fff71a4515f120a665336d936ec3a4f9b
+
 
 // function that prompts and validates user input
 function promptFor(question, callback){
