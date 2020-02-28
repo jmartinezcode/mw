@@ -36,7 +36,7 @@ function mainMenu(person, people){
       break;
     case "family":
       // TODO: get person's family
-
+      displayFamily(person, people);
       break;
     case "descendants":
       // TODO: get person's descendants
@@ -134,6 +134,44 @@ function displayPerson(person){
   alert(personInfo);
 }
 
+function displayFamily(person, people){
+  var children = getChildren(person, people);
+  var spouse = getSpouse(person, people);
+  var parents = getParents(person, people);
+  var siblings = getSiblings(person, people);
+  displayByFamilyType("Children", children);
+  displayByFamilyType("Spouse", spouse);
+  displayByFamilyType("Parents", parents);
+  displayByFamilyType("Siblings", siblings);
+}
+function getChildren(person,people){
+  var children = people.filter(function(el){
+    return el.parents[0] == person.id || el.parents[1] == person.id;
+
+  });
+  return children;
+}
+function getSpouse(person, people){
+var spouse = people.filter(function(el){
+  return el.currentSpouse == person.id;
+  
+});
+return spouse;
+}
+function getParents(person, people){
+  var parents = people.filter(function(el){
+    return el.id == person.parents[0] || el.id == person.parents[1];
+  });
+  return parents;
+
+}
+function getSiblings(person, people){
+  var siblings = people.filter(function(el){
+    return el.parents[0] == person.parents[0] || el.parents[1] == person.parents[0] || el.parents[0] == person.parents[1] || el.parents[1] == person.parents[1];
+  });
+  return siblings;
+}
+
 function displayDescendants(person, people, descendants = []){
   var members= descendants;
   
@@ -150,8 +188,11 @@ function displayDescendants(person, people, descendants = []){
     
   
 }
-
-
+function displayByFamilyType(string, members){
+  alert(string + "\n" + members.map(function(person){
+    return person.firstName + " " + person.lastName;
+  }).join("\n"));
+}
 // function that prompts and validates user input
 function promptFor(question, callback){
   do{
@@ -170,11 +211,3 @@ function chars(input){
   return true; // default validation only
 }
 
-
-
-
-
-// for (let i = 0; i < traits.length; i++) {
-//     people.filter(x => people[traits[i]] == values[i]  )
-  
-// }
