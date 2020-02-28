@@ -40,7 +40,7 @@ function mainMenu(person, people){
       break;
     case "descendants":
       // TODO: get person's descendants
-      displayDescendants(person, people);
+      displayPeople(displayDescendants(person, people));
       break;
     case "restart":
       app(people); // restart
@@ -141,35 +141,19 @@ function displayPerson(person){
   alert(personInfo);
 }
 
-function displayDescendants(person, people){
+function displayDescendants(person, people, descendants = []){
+  var members= descendants;
 
-  var members= [];
-  members.push(person);
+  var children = people.filter(function(el){
+    if (el.parents[0] == person.id || el.parents[1] == person.id) {
+      members.push(el);
+      return true;
+    }});
+    for (let i = 0; i < children.length; i++) {
+      displayDescendants(children[i], people, members);
 
-  var newMember = [];
-    newMember = people.filter(function(el){
-    for (let i = 0; i < members.length; i++) {
-        if (el.parents[0] == members[i].id){
-          return el.parents[0] == members[i].id;
-      }
-      else if(el.parents[1] == members[i].id){
-          return el.parents[1] == members[i].id;
-      }
     }
-return false;
-  });
-
-  if (newMember.length == 0) {
-     displayPeople(members);
-  }
-  else{
-    newMember.forEach(element => {
-      members.push(element);
-    });
-    displayDescendants(members, people);
-  }
-
-
+    return members;
 
 
 }
@@ -192,3 +176,12 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
+
+
+
+
+
+// for (let i = 0; i < traits.length; i++) {
+//     people.filter(x => people[traits[i]] == values[i]  )
+
+// }
