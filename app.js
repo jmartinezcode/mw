@@ -115,10 +115,11 @@ function searchByTrait(people){
   var values = traits.map(x => promptFor("What is the person's " + x, chars));
   // let pairs = new Map;
   // pairs.set("traits", traits).set("values", values);
+  
   for (var i = 0; i < traits.length; i++) {
-    var filters = people.filter(x => x[traits[i]] == values[i]);
+    people = people.filter(x => x[traits[i]] === values[i]);
   }
-  return filters; //seeing if pairs needed, first
+  return people; //seeing if pairs needed, first
 }
 
 // alerts a list of people
