@@ -13,7 +13,7 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits
-      searchByTrait(people);
+      displayPeople(searchByTrait(people));
       break;
     default:
       alert("Invalid input. Please try again!");
@@ -105,12 +105,19 @@ function enterSearchTraits(search, input){
   }
   return search;
 }
+function pairTraits(value){
+  return value.map(x)
+}
 
 function searchByTrait(people){
   var traits = getSearchTraits();
   var values = traits.map(x => promptFor("What is the person's " + x, chars));
-
-  return people.filter(x => people[traits[x]] == people[traits[values]]);
+  // let pairs = new Map;
+  // pairs.set("traits", traits).set("values", values);
+  for (var i = 0; i < traits.length; i++) {
+    var filters = people.filter(x => x[traits[i]] == values[i]);
+  }
+  return filters; //seeing if pairs needed, first
 }
 
 // alerts a list of people
@@ -174,7 +181,7 @@ function getSiblings(person, people){
 
 function displayDescendants(person, people, descendants = []){
   var members= descendants;
-  
+
   var children = people.filter(function(el){
     if (el.parents[0] == person.id || el.parents[1] == person.id) {
       members.push(el);
@@ -182,11 +189,11 @@ function displayDescendants(person, people, descendants = []){
     }});
     for (let i = 0; i < children.length; i++) {
       displayDescendants(children[i], people, members);
-      
+
     }
-    return members; 
-    
-  
+    return members;
+
+
 }
 function displayByFamilyType(string, members){
   alert(string + "\n" + members.map(function(person){
