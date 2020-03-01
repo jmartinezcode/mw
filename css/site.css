@@ -1,0 +1,8 @@
+html{
+  background: url(../img/bandit-vector-cowboy.png) no-repeat center center fixed;
+  -webkit-background-size: auto;
+  -moz-background-size: auto;
+  -o-background-size: auto;
+  background-size: auto;
+  background-color: black;
+}
