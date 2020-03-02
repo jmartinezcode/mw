@@ -8,11 +8,9 @@ function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
-      // TODO: search by name
       searchByName(people);
       break;
     case 'no':
-      // TODO: search by traits
       displayPeople(searchByTrait(people));
       break;
     default:
@@ -35,11 +33,9 @@ function mainMenu(person, people){
       displayPerson(person);
       break;
     case "family":
-      // TODO: get person's family
       displayFamily(person, people);
       break;
     case "descendants":
-      // TODO: get person's descendants
       displayPeople(displayDescendants(person, people));
       break;
     case "restart":
@@ -143,8 +139,10 @@ function displayFamily(person, people){
   var siblings = getSiblings(person, people);
   displayByFamilyType("Children", children);
   displayByFamilyType("Spouse", spouse);
-  displayByFamilyType("Parents", parents);
-  displayByFamilyType("Siblings", siblings);
+  if (parents.length > 0) {
+    displayByFamilyType("Parents", parents);
+    displayByFamilyType("Siblings", siblings);
+  }
 }
 
 function getChildren(person,people){
@@ -156,11 +154,7 @@ function getChildren(person,people){
 }
 
 function getSpouse(person, people){
-var spouse = people.filter(function(el){
-  return el.currentSpouse == person.id;
-
-});
-return spouse;
+  return people.filter(x => x.currentSpouse == person.id)
 }
 
 function getParents(person, people){
@@ -168,13 +162,16 @@ function getParents(person, people){
     return el.id == person.parents[0] || el.id == person.parents[1];
   });
   return parents;
-
 }
+
 function getSiblings(person, people){
-  var siblings = people.filter(function(el){
-    return el.parents[0] == person.parents[0] || el.parents[1] == person.parents[0] || el.parents[0] == person.parents[1] || el.parents[1] == person.parents[1];
-  });
-  return siblings;
+  if (person.parents.length > 0) {
+    return people.filter(x => x.parents[0] == person.parents[0] ||
+                              x.parents[0] == person.parents[1] ||
+                              x.parents[1] == person.parents[0] ||
+                              x.parents[1] == person.parents[1] &&
+                              x.id != person.id);
+  }
 }
 
 function displayDescendants(person, people, descendants = []){
