@@ -106,7 +106,7 @@ function searchByTrait(people){
   var traits = getSearchTraits();
   var values = traits.map(x => promptFor("What is the person's " + x, chars));
   for (var i = 0; i < traits.length; i++) {
-    people = people.filter(x => x[traits[i]] === values[i]);
+    people = people.filter(x => x[traits[i]] == values[i]);
   }
   return people; //seeing if pairs needed, first
 }
@@ -166,10 +166,10 @@ function getParents(person, people){
 
 function getSiblings(person, people){
   if (person.parents.length > 0) {
-    return people.filter(x => x.parents[0] == person.parents[0] ||
+    return people.filter(x => (x.parents[0] == person.parents[0] ||
                               x.parents[0] == person.parents[1] ||
                               x.parents[1] == person.parents[0] ||
-                              x.parents[1] == person.parents[1] &&
+                              x.parents[1] == person.parents[1]) &&
                               x.id != person.id);
   }
 }
